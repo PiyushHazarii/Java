@@ -1,0 +1,22 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class TryWithResourcesExample {
+
+    public static void main(String[] args) {
+        // The resource (BufferedReader in this case) is declared within the parentheses
+        // of the try statement. It will be automatically closed when the try block exits,
+        // regardless of whether an exception occurs or not.
+        try (BufferedReader reader = new BufferedReader(new FileReader("example.txt"))) {
+            String line;
+            System.out.println("File Content:");
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+        } catch (IOException e) {
+            // Catch block to handle potential IOException during file operations
+            System.err.println("Error reading file: " + e.getMessage());
+        }
+    }
+}
